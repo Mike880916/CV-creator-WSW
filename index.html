@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generador de CV Formato Canadá — We Study World</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black:#0a0a0a;--dark:#111111;--card:#1a1a1a;--border:#2a2a2a;--white:#ffffff;--muted:#888;--input-bg:#1e1e1e;
+  --fire-grad:linear-gradient(90deg,#e02d00,#ff5500,#ff8c00,#ffb300,#ffd700,#ffb300,#ff8c00,#ff5500,#e02d00);
+  --fire-dim:rgba(255,100,0,0.1);--accent:#ff6600;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:'Plus Jakarta Sans',sans-serif;overflow-x:hidden;}
+@keyframes fireFlow{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.6);}}
+@keyframes slideIn{from{opacity:0;transform:translateX(20px);}to{opacity:1;transform:translateX(0);}}
+
+.fire-text{background:var(--fire-grad);background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:fireFlow 8s ease-in-out infinite;}
+
+/* NAVBAR */
+.navbar{display:flex;align-items:center;justify-content:space-between;padding:18px 60px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200;background:rgba(10,10,10,.96);backdrop-filter:blur(12px);}
+.navbar img{height:52px;filter:brightness(0) invert(1);opacity:.95;}
+.nav-badge{background:var(--fire-dim);border:1px solid rgba(255,120,0,.3);color:#ffb300;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:100px;display:flex;align-items:center;gap:7px;}
+.nav-badge::before{content:'';width:6px;height:6px;background:#ff5500;border-radius:50%;animation:pulse 2s infinite;}
+
+/* HERO */
+.hero{padding:56px 60px 48px;text-align:center;position:relative;border-bottom:1px solid var(--border);overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 50% -10%,rgba(255,80,0,.14),transparent 70%);pointer-events:none;}
+.hero-eyebrow{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:#ff8c00;margin-bottom:18px;animation:fadeUp .5s ease both;}
+.hero h1{font-size:clamp(38px,5.5vw,66px);font-weight:800;letter-spacing:-.04em;line-height:1.05;margin-bottom:18px;animation:fadeUp .6s ease .1s both;}
+.hero p{font-size:16px;color:rgba(255,255,255,.55);max-width:540px;margin:0 auto 28px;line-height:1.75;animation:fadeUp .6s ease .2s both;}
+.hero-explanation{background:rgba(255,140,0,.07);border:1px solid rgba(255,140,0,.2);border-radius:12px;padding:14px 22px;max-width:620px;margin:0 auto 22px;text-align:left;font-size:13.5px;color:rgba(255,255,255,.65);line-height:1.7;animation:fadeUp .6s ease .3s both;}
+.hero-explanation strong{color:rgba(255,255,255,.9);font-weight:600;}
+
+.hbadge{background:var(--card);border:1px solid var(--border);border-radius:100px;padding:7px 16px;font-size:12px;color:rgba(255,255,255,.6);display:flex;align-items:center;gap:6px;}
+
+/* MAIN LAYOUT */
+.main-wrap{display:grid;grid-template-columns:1fr 400px;align-items:start;}
+
+/* FORM SIDE */
+.form-side{padding:36px 48px 0;border-right:1px solid var(--border);}
+
+/* SECTION */
+.form-section{margin-bottom:32px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+.section-num{width:30px;height:30px;border-radius:50%;background:var(--fire-dim);border:1px solid rgba(255,120,0,.3);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#ffb300;flex-shrink:0;}
+.section-title{font-size:14px;font-weight:700;letter-spacing:-.01em;}
+.section-hint{font-size:11px;color:var(--muted);margin-left:auto;white-space:nowrap;}
+
+/* FORM FIELDS */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.field-full{grid-column:1/-1;}
+.field-group{display:flex;flex-direction:column;gap:5px;}
+.field-group label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38);}
+.field-group input,.field-group select,.field-group textarea{background:var(--input-bg);border:1px solid var(--border);border-radius:9px;color:var(--white);font-family:'Plus Jakarta Sans',sans-serif;font-size:13.5px;padding:10px 14px;outline:none;transition:border-color .2s,box-shadow .2s;width:100%;}
+.field-group input:focus,.field-group select:focus,.field-group textarea:focus{border-color:#ff8c00;box-shadow:0 0 0 3px rgba(255,140,0,.1);}
+.field-group input::placeholder,.field-group textarea::placeholder{color:rgba(255,255,255,.13);}
+.field-group textarea{resize:vertical;min-height:80px;line-height:1.6;}
+.field-group select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:36px;cursor:pointer;}
+.field-group select option{background:#1e1e1e;}
+
+/* ENTRY CARDS */
+.entry-card{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:18px;margin-bottom:12px;animation:slideIn .3s ease;}
+.entry-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.entry-label{font-size:11px;font-weight:700;color:#ff8c00;letter-spacing:.08em;text-transform:uppercase;}
+.remove-btn{background:rgba(255,50,50,.07);border:1px solid rgba(255,60,60,.18);color:rgba(255,80,80,.7);font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;cursor:pointer;transition:all .2s;}
+.remove-btn:hover{background:rgba(255,50,50,.16);color:#ff5555;border-color:rgba(255,50,50,.4);}
+
+.add-btn{width:100%;background:transparent;border:1px dashed rgba(255,255,255,.15);border-radius:10px;color:rgba(255,255,255,.35);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:500;padding:12px;cursor:pointer;transition:all .2s;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:8px;}
+.add-btn:hover{border-color:#ff8c00;color:#ff8c00;background:var(--fire-dim);}
+
+.checkbox-row{display:flex;align-items:center;gap:9px;}
+.checkbox-row input[type="checkbox"]{width:15px;height:15px;accent-color:#ff8c00;cursor:pointer;flex-shrink:0;}
+.checkbox-row label{font-size:12.5px;color:rgba(255,255,255,.55);cursor:pointer;}
+
+/* STICKY DOWNLOAD */
+.download-wrap{padding:24px 48px;border-top:1px solid var(--border);position:sticky;bottom:0;background:rgba(10,10,10,.97);backdrop-filter:blur(10px);z-index:10;}
+.download-btn{width:100%;background:var(--fire-grad);background-size:300% 100%;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;letter-spacing:.04em;padding:17px 32px;border:none;border-radius:13px;cursor:pointer;animation:fireFlow 8s ease-in-out infinite;transition:all .3s;text-shadow:0 1px 6px rgba(0,0,0,.35);position:relative;overflow:hidden;}
+.download-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,100,0,.5);filter:brightness(1.08);}
+.download-btn::after{content:'↓';position:absolute;right:22px;top:50%;transform:translateY(-50%);font-size:18px;transition:transform .25s;}
+.download-btn:hover::after{transform:translateY(-50%) translateY(-3px);}
+
+/* PREVIEW PANEL */
+.preview-side{position:sticky;top:71px;height:calc(100vh - 71px);display:flex;flex-direction:column;background:#171717;}
+.preview-header{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.preview-dot{width:7px;height:7px;background:#ff6600;border-radius:50%;animation:pulse 2s infinite;}
+.preview-label{font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.preview-scroll{flex:1;overflow-y:auto;padding:16px;background:#e8e8e8;}
+.preview-scroll::-webkit-scrollbar{width:4px;}
+.preview-scroll::-webkit-scrollbar-thumb{background:#555;border-radius:2px;}
+
+/* CV DOC (mini preview) */
+#cv-preview-mini{background:#fff;color:#111;font-family:'Lora',Georgia,serif;font-size:9.8px;line-height:1.55;padding:26px 30px;box-shadow:0 2px 20px rgba(0,0,0,.25);border-radius:2px;}
+.cv-name{font-family:'Plus Jakarta Sans',sans-serif;font-size:20px;font-weight:800;letter-spacing:-.02em;color:#0a0a0a;margin-bottom:3px;line-height:1.1;}
+.cv-contact-line{font-size:9px;color:#444;display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:11px;}
+.cv-sep{color:#ccc;}
+.cv-line{border:none;border-top:1.5px solid #111;margin:0 0 7px;}
+.cv-thin{border:none;border-top:.5px solid #e0e0e0;margin:5px 0;}
+.cv-sec-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:8px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#0a0a0a;margin:11px 0 5px;}
+.cv-job{margin-bottom:9px;}
+.cv-row{display:flex;justify-content:space-between;align-items:baseline;}
+.cv-job-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:10.5px;font-weight:700;color:#0a0a0a;}
+.cv-date{font-size:8.5px;color:#555;white-space:nowrap;margin-left:6px;}
+.cv-sub{font-size:9px;color:#333;font-style:italic;margin-bottom:3px;}
+.cv-bullets{padding-left:13px;margin-top:2px;}
+.cv-bullets li{font-size:9.5px;color:#222;margin-bottom:1.5px;}
+.cv-summary{font-size:9.5px;color:#333;line-height:1.65;}
+.cv-skills-wrap{display:flex;flex-wrap:wrap;gap:4px;margin-top:2px;}
+.cv-stag{background:#f0f0f0;border-radius:2px;padding:2px 6px;font-size:8.5px;color:#333;}
+.cv-lang-row{display:flex;justify-content:space-between;padding:1.5px 0;font-size:9.5px;}
+.cv-lang-lv{color:#555;}
+.cv-cert-item{margin-bottom:5px;font-size:9.5px;}
+.cv-cert-name{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;color:#0a0a0a;}
+.cv-cert-sub{font-size:8.5px;color:#555;}
+.cv-empty{text-align:center;padding:40px 20px;color:#bbb;}
+.cv-empty-icon{font-size:28px;margin-bottom:10px;}
+.cv-empty-text{font-size:11px;font-style:italic;line-height:1.7;}
+.cv-skill-label{font-family:'Plus Jakarta Sans',sans-serif;font-size:8px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:3px;}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .3s;}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal-box{background:var(--dark);border:1px solid var(--border);border-radius:20px;width:100%;max-width:800px;max-height:92vh;display:flex;flex-direction:column;overflow:hidden;transform:scale(.94) translateY(10px);transition:transform .3s;}
+.modal-overlay.open .modal-box{transform:scale(1) translateY(0);}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:18px 26px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.modal-title{font-size:15px;font-weight:700;}
+.modal-close{background:var(--card);border:1px solid var(--border);color:var(--muted);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .2s;line-height:1;}
+.modal-close:hover{border-color:#ff6600;color:#ff6600;}
+.modal-body{flex:1;overflow-y:auto;background:#d8d8d8;padding:32px;}
+.modal-body::-webkit-scrollbar{width:5px;}
+.modal-body::-webkit-scrollbar-thumb{background:#999;border-radius:2px;}
+.modal-footer{padding:18px 26px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-end;flex-shrink:0;align-items:center;}
+.modal-hint{font-size:12px;color:var(--muted);margin-right:auto;}
+.btn-sec{background:var(--card);border:1px solid var(--border);color:rgba(255,255,255,.65);font-family:'Plus Jakarta Sans',sans-serif;font-size:13.5px;font-weight:600;padding:11px 22px;border-radius:10px;cursor:pointer;transition:all .2s;}
+.btn-sec:hover{border-color:#666;}
+.btn-pri{background:var(--fire-grad);background-size:300% 100%;animation:fireFlow 8s ease-in-out infinite;border:none;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:13.5px;font-weight:700;padding:11px 26px;border-radius:10px;cursor:pointer;transition:all .3s;text-shadow:0 1px 4px rgba(0,0,0,.3);}
+.btn-pri:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(255,100,0,.45);}
+
+/* CV DOC MODAL (larger) */
+#cv-preview-full{background:#fff;color:#111;font-family:'Lora',Georgia,serif;line-height:1.55;padding:50px 54px;box-shadow:none;}
+#cv-preview-full .cv-name{font-size:28px;}
+#cv-preview-full .cv-contact-line{font-size:11px;}
+#cv-preview-full .cv-sec-title{font-size:9px;}
+#cv-preview-full .cv-job-title{font-size:12.5px;}
+#cv-preview-full .cv-sub{font-size:10.5px;}
+#cv-preview-full .cv-summary{font-size:11px;}
+#cv-preview-full .cv-bullets li{font-size:11px;}
+#cv-preview-full .cv-date{font-size:10px;}
+#cv-preview-full .cv-lang-row{font-size:11px;}
+#cv-preview-full .cv-stag{font-size:10px;}
+#cv-preview-full .cv-cert-item{font-size:11px;}
+#cv-preview-full .cv-cert-sub{font-size:10px;}
+#cv-preview-full .cv-skill-label{font-size:9px;}
+#cv-preview-full .cv-line{margin:0 0 9px;}
+#cv-preview-full .cv-sec-title{margin:14px 0 7px;}
+#cv-preview-full .cv-job{margin-bottom:11px;}
+#cv-preview-full .cv-empty-text{font-size:13px;}
+
+@media(max-width:900px){
+  .main-wrap{grid-template-columns:1fr;}
+  .preview-side{display:none;}
+  .form-side{padding:24px 20px 0;}
+  .download-wrap{padding:18px 20px;}
+  .hero{padding:40px 24px 34px;}
+  .navbar{padding:16px 20px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <img src="data:image/png;base64,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" alt="We Study World">
+  <div class="nav-badge">🇨🇦 CV Formato Canadá 2025</div>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">We Study World · Herramienta Gratuita</div>
+  <h1>Crea tu CV<br><span class="fire-text">Formato Canadá</span></h1>
+  <p>Llena los campos y obtén un CV profesional listo para aplicar a empleos en Canadá. Estándar actualizado 2025–2026.</p>
+  <div class="hero-explanation">
+    <p>🇨🇦 En Canadá, la ley prohíbe la discriminación laboral por edad, apariencia o estado civil. Por eso el CV canadiense <strong>no incluye foto, edad, documento de identidad ni estado civil</strong> — los reclutadores no quieren esa información para evitar riesgos legales. Lo único que importa es lo que sabes hacer y los resultados que has logrado.</p>
+  </div>
+  <div class="hero-badges">
+    <div class="hbadge">📄 Formato Letter (8.5 × 11 in)</div>
+    <div class="hbadge">🔄 Preview en tiempo real</div>
+    <div class="hbadge">⬇️ Descarga gratuita en PDF</div>
+  </div>
+</section>
+
+<div class="main-wrap">
+
+  <div>
+  <div class="form-side">
+
+    <!-- 1 INFORMACIÓN PERSONAL -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-num">1</div>
+        <div class="section-title">Información Personal</div>
+      </div>
+      <div class="form-grid">
+        <div class="field-group field-full">
+          <label>Nombre Completo</label>
+          <input type="text" id="p_name" placeholder="John Michael Smith" oninput="up()">
+        </div>
+        <div class="field-group">
+          <label>Ciudad, Provincia</label>
+          <input type="text" id="p_city" placeholder="Toronto, ON" oninput="up()">
+        </div>
+        <div class="field-group">
+          <label>Teléfono</label>
+          <input type="text" id="p_phone" placeholder="+1 (416) 555-0123" oninput="up()">
+        </div>
+        <div class="field-group">
+          <label>Correo Electrónico</label>
+          <input type="email" id="p_email" placeholder="john.smith@email.com" oninput="up()">
+        </div>
+        <div class="field-group">
+          <label>LinkedIn (Recomendado)</label>
+          <input type="text" id="p_linkedin" placeholder="linkedin.com/in/johnsmith" oninput="up()">
+        </div>
+        <div class="field-group">
+          <label>Sitio Web / Portfolio (Opcional)</label>
+          <input type="text" id="p_website" placeholder="johnsmith.com" oninput="up()">
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 RESUMEN PROFESIONAL -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-num">2</div>
+        <div class="section-title">Resumen Profesional</div>
+        <div class="section-hint">3–5 oraciones · En inglés</div>
+      </div>
+      <div class="field-group">
+        <label>Habilidades clave + logros + valor al empleador</label>
+        <textarea id="p_summary" rows="5" placeholder="Dynamic marketing professional with 5+ years driving brand growth across North American markets. Proven track record of increasing engagement by 40% through data-driven campaigns. Bilingual (English/Spanish) with strong cross-cultural communication skills. Seeking to leverage expertise at a forward-thinking Canadian organization." oninput="up()"></textarea>
+      </div>
+    </div>
+
+    <!-- 3 EXPERIENCIA LABORAL -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-num">3</div>
+        <div class="section-title">Experiencia Laboral</div>
+        <div class="section-hint">Más reciente primero</div>
+      </div>
+      <div id="exp-container"></div>
+      <button class="add-btn" onclick="addEntry('exp')">+ Agregar otra experiencia</button>
+    </div>
+
+    <!-- 4 EDUCACIÓN -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-num">4</div>
+        <div class="section-title">Educación</div>
+        <div class="section-hint">Más reciente primero</div>
+      </div>
+      <div id="edu-container"></div>
+      <button class="add-btn" onclick="addEntry('edu')">+ Agregar otra institución</button>
+    </div>
+
+    <!-- 5 HABILIDADES -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-num">5</div>
+        <div class="section-title">Habilidades / Skills</div>
+      </div>
+      <div class="form-grid">
+        <div class="field-group field-full">
+          <label>Hard Skills — separadas por comas</label>
+          <input type="text" id="p_hard" placeholder="Microsoft Excel, Google Analytics, Salesforce, SQL, Adobe Photoshop" oninput="up()">
+        </div>
+        <div class="field-group field-full">
+          <label>Soft Skills — separadas por comas</label>
+          <input type="text" id="p_soft" placeholder="Leadership, Team collaboration, Problem-solving, Adaptability" oninput="up()">
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 IDIOMAS -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-num">6</div>
+        <div class="section-title">Idiomas / Languages</div>
+      </div>
+      <div id="lang-container"></div>
+      <button class="add-btn" onclick="addEntry('lang')">+ Agregar otro idioma</button>
+    </div>
+
+    <!-- 7 CERTIFICACIONES -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-num">7</div>
+        <div class="section-title">Certificaciones / Cursos</div>
+      </div>
+      <div id="cert-container"></div>
+      <button class="add-btn" onclick="addEntry('cert')">+ Agregar certificación</button>
+    </div>
+
+    <!-- 8 PREMIOS -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-num">8</div>
+        <div class="section-title">Premios / Reconocimientos</div>
+      </div>
+      <div id="award-container"></div>
+      <button class="add-btn" onclick="addEntry('award')">+ Agregar premio</button>
+    </div>
+
+    <!-- 9 INTERESES -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-num">9</div>
+        <div class="section-title">Intereses / Hobbies</div>
+        <div class="section-hint">Opcional</div>
+      </div>
+      <div class="field-group">
+        <label>Separados por comas</label>
+        <input type="text" id="p_hobbies" placeholder="Photography, Hiking, Volunteer teaching, Chess" oninput="up()">
+      </div>
+    </div>
+
+  </div><!-- /form-side -->
+
+  <!-- STICKY DOWNLOAD -->
+  <div class="download-wrap">
+    <button class="download-btn" onclick="openModal()">
+      Vista Previa y Descargar CV
+    </button>
+  </div>
+  </div><!-- /left col -->
+
+  <!-- PREVIEW SIDE -->
+  <div class="preview-side">
+    <div class="preview-header">
+      <div class="preview-dot"></div>
+      <span class="preview-label">Vista previa en tiempo real</span>
+    </div>
+    <div class="preview-scroll">
+      <div id="cv-preview-mini"></div>
+    </div>
+  </div>
+
+</div><!-- /main-wrap -->
+
+<!-- MODAL PREVIEW -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">📄 Vista Previa — CV Formato Canadá</div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div id="cv-preview-full"></div>
+    </div>
+    <div class="modal-footer">
+      <span class="modal-hint">Revisa que todo esté correcto antes de descargar</span>
+      <button class="btn-sec" onclick="closeModal()">← Editar</button>
+      <button class="btn-pri" onclick="downloadPDF()">⬇ Abrir para Descargar PDF</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============ HELPERS ============
+function g(id){ return document.getElementById(id); }
+function val(id){ return (g(id)?.value||'').trim(); }
+function esc(s){ return s?s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'):''; }
+
+// ============ ENTRY CONSTRUCTORS ============
+function makeExp(idx){
+  return `<div class="entry-card" id="exp-${idx}">
+    <div class="entry-card-header">
+      <span class="entry-label">💼 Experiencia ${idx+1}</span>
+      ${idx>0?`<button class="remove-btn" onclick="rem('exp',${idx})">Eliminar</button>`:''}
+    </div>
+    <div class="form-grid">
+      <div class="field-group"><label>Cargo / Job Title</label><input type="text" placeholder="Marketing Coordinator" oninput="up()"></div>
+      <div class="field-group"><label>Empresa / Company</label><input type="text" placeholder="Maple Tech Inc." oninput="up()"></div>
+      <div class="field-group"><label>Ciudad, Provincia</label><input type="text" placeholder="Vancouver, BC" oninput="up()"></div>
+      <div class="field-group"></div>
+      <div class="field-group"><label>Fecha Inicio (MM/YYYY)</label><input type="text" placeholder="03/2022" oninput="up()"></div>
+      <div class="field-group"><label>Fecha Fin</label><input type="text" placeholder="Present" id="exp-end-${idx}" oninput="up()"></div>
+      <div class="field-group field-full" style="margin-top:-4px">
+        <div class="checkbox-row"><input type="checkbox" id="ec-${idx}" onchange="toggleCurr(${idx})"><label for="ec-${idx}">Trabajo actual (marcar como Present)</label></div>
+      </div>
+      <div class="field-group field-full">
+        <label>Logros / Responsabilidades — un bullet por línea, inicia con verbo de acción</label>
+        <textarea rows="4" placeholder="Increased social media engagement by 35% through targeted campaigns&#10;Coordinated a team of 5 content creators to deliver monthly reports&#10;Managed $50K annual budget achieving 15% cost savings" oninput="up()"></textarea>
+      </div>
+    </div>
+  </div>`;
+}
+function makeEdu(idx){
+  return `<div class="entry-card" id="edu-${idx}">
+    <div class="entry-card-header">
+      <span class="entry-label">🎓 Educación ${idx+1}</span>
+      ${idx>0?`<button class="remove-btn" onclick="rem('edu',${idx})">Eliminar</button>`:''}
+    </div>
+    <div class="form-grid">
+      <div class="field-group field-full"><label>Título / Degree</label><input type="text" placeholder="Bachelor of Business Administration" oninput="up()"></div>
+      <div class="field-group"><label>Institución</label><input type="text" placeholder="University of Toronto" oninput="up()"></div>
+      <div class="field-group"><label>Ciudad, País</label><input type="text" placeholder="Toronto, Canada" oninput="up()"></div>
+      <div class="field-group"><label>Año de Graduación</label><input type="text" placeholder="2021 · In Progress" oninput="up()"></div>
+      <div class="field-group"><label>Honores / Distinciones (Opcional)</label><input type="text" placeholder="Dean's List · GPA 3.8/4.0" oninput="up()"></div>
+    </div>
+  </div>`;
+}
+function makeLang(idx){
+  return `<div class="entry-card" id="lang-${idx}">
+    <div class="entry-card-header">
+      <span class="entry-label">🌐 Idioma ${idx+1}</span>
+      ${idx>0?`<button class="remove-btn" onclick="rem('lang',${idx})">Eliminar</button>`:''}
+    </div>
+    <div class="form-grid">
+      <div class="field-group"><label>Idioma</label><input type="text" placeholder="English" oninput="up()"></div>
+      <div class="field-group"><label>Nivel</label>
+        <select onchange="up()">
+          <option value="">Seleccionar nivel...</option>
+          <option>Native / Bilingual</option>
+          <option>Advanced (C1–C2)</option>
+          <option>Upper Intermediate (B2)</option>
+          <option>Intermediate (B1)</option>
+          <option>Basic (A1–A2)</option>
+        </select>
+      </div>
+    </div>
+  </div>`;
+}
+function makeCert(idx){
+  return `<div class="entry-card" id="cert-${idx}">
+    <div class="entry-card-header">
+      <span class="entry-label">📜 Certificación ${idx+1}</span>
+      ${idx>0?`<button class="remove-btn" onclick="rem('cert',${idx})">Eliminar</button>`:''}
+    </div>
+    <div class="form-grid">
+      <div class="field-group field-full"><label>Nombre del Curso / Certificación</label><input type="text" placeholder="Google Analytics Certification" oninput="up()"></div>
+      <div class="field-group"><label>Institución</label><input type="text" placeholder="Google" oninput="up()"></div>
+      <div class="field-group"><label>Año</label><input type="text" placeholder="2024" oninput="up()"></div>
+    </div>
+  </div>`;
+}
+function makeAward(idx){
+  return `<div class="entry-card" id="award-${idx}">
+    <div class="entry-card-header">
+      <span class="entry-label">🏆 Premio ${idx+1}</span>
+      ${idx>0?`<button class="remove-btn" onclick="rem('award',${idx})">Eliminar</button>`:''}
+    </div>
+    <div class="form-grid">
+      <div class="field-group field-full"><label>Nombre del Premio / Reconocimiento</label><input type="text" placeholder="Employee of the Year" oninput="up()"></div>
+      <div class="field-group"><label>Institución / Empresa</label><input type="text" placeholder="Maple Tech Inc." oninput="up()"></div>
+      <div class="field-group"><label>Año</label><input type="text" placeholder="2023" oninput="up()"></div>
+    </div>
+  </div>`;
+}
+
+const makers = {exp:makeExp,edu:makeEdu,lang:makeLang,cert:makeCert,award:makeAward};
+
+function addEntry(type){
+  const c = g(`${type}-container`);
+  const idx = c.children.length;
+  c.insertAdjacentHTML('beforeend', makers[type](idx));
+  up();
+}
+
+function rem(type,idx){
+  const el = g(`${type}-${idx}`);
+  if(el) el.remove();
+  // re-index
+  const c = g(`${type}-container`);
+  const names={exp:'💼 Experiencia',edu:'🎓 Educación',lang:'🌐 Idioma',cert:'📜 Certificación',award:'🏆 Premio'};
+  Array.from(c.children).forEach((card,i)=>{
+    card.id=`${type}-${i}`;
+    const lbl=card.querySelector('.entry-label');
+    if(lbl) lbl.textContent=`${names[type]} ${i+1}`;
+    if(i===0){const rb=card.querySelector('.remove-btn');if(rb)rb.remove();}
+  });
+  up();
+}
+
+function toggleCurr(idx){
+  const cb=g(`ec-${idx}`), end=g(`exp-end-${idx}`);
+  if(cb&&end){end.value=cb.checked?'Present':'';end.disabled=cb.checked;up();}
+}
+
+// ============ DATA COLLECTORS ============
+function getExpData(){
+  const c=g('exp-container');
+  return Array.from(c.children).map(card=>{
+    const ins=card.querySelectorAll('input[type="text"], textarea');
+    return{title:ins[0]?.value||''  ,company:ins[1]?.value||'',location:ins[2]?.value||'',start:ins[3]?.value||'',end:ins[4]?.value||'',bullets:ins[5]?.value||''};
+  });
+}
+function getEduData(){
+  const c=g('edu-container');
+  return Array.from(c.children).map(card=>{
+    const ins=card.querySelectorAll('input[type="text"]');
+    return{degree:ins[0]?.value||'',inst:ins[1]?.value||'',loc:ins[2]?.value||'',year:ins[3]?.value||'',honors:ins[4]?.value||''};
+  });
+}
+function getLangData(){
+  const c=g('lang-container');
+  return Array.from(c.children).map(card=>{
+    const ins=card.querySelectorAll('input, select');
+    return{lang:ins[0]?.value||'',level:ins[1]?.value||''};
+  });
+}
+function getCertData(){
+  const c=g('cert-container');
+  return Array.from(c.children).map(card=>{
+    const ins=card.querySelectorAll('input[type="text"]');
+    return{name:ins[0]?.value||'',inst:ins[1]?.value||'',year:ins[2]?.value||''};
+  });
+}
+function getAwardData(){
+  const c=g('award-container');
+  return Array.from(c.children).map(card=>{
+    const ins=card.querySelectorAll('input[type="text"]');
+    return{name:ins[0]?.value||'',inst:ins[1]?.value||'',year:ins[2]?.value||''};
+  });
+}
+
+// ============ CV BUILDER ============
+function buildCV(){
+  const name=val('p_name'),city=val('p_city'),phone=val('p_phone'),
+        email=val('p_email'),li=val('p_linkedin'),web=val('p_website'),
+        summary=val('p_summary'),hard=val('p_hard'),soft=val('p_soft'),hobbies=val('p_hobbies');
+
+  if(!name&&!city&&!email){
+    return `<div class="cv-empty"><div class="cv-empty-icon">📄</div><div class="cv-empty-text">Comienza llenando el formulario<br>y tu CV aparecerá aquí en tiempo real</div></div>`;
+  }
+
+  // Contact line
+  let contact=[];
+  if(city)contact.push(`📍 ${esc(city)}`);
+  if(phone)contact.push(`📞 ${esc(phone)}`);
+  if(email)contact.push(`✉ ${esc(email)}`);
+  if(li)contact.push(`in ${esc(li)}`);
+  if(web)contact.push(`🌐 ${esc(web)}`);
+  const contactHTML=contact.join('<span class="cv-sep"> · </span>');
+
+  // Summary
+  const sumHTML=summary?`<div class="cv-sec-title">Professional Summary</div><hr class="cv-line"><div class="cv-summary">${esc(summary)}</div>`:'';
+
+  // Experience
+  const exps=getExpData().filter(e=>e.title||e.company);
+  let expHTML='';
+  if(exps.length){
+    expHTML='<div class="cv-sec-title">Work Experience</div><hr class="cv-line">';
+    exps.forEach(e=>{
+      const bullets=e.bullets?e.bullets.split('\n').filter(b=>b.trim()).map(b=>`<li>${esc(b.replace(/^[•\-]\s*/,''))}</li>`).join(''):'';
+      expHTML+=`<div class="cv-job">
+        <div class="cv-row"><span class="cv-job-title">${esc(e.title)}</span><span class="cv-date">${e.start?esc(e.start):''}${e.start&&e.end?' – ':''}${e.end?esc(e.end):''}</span></div>
+        <div class="cv-sub">${esc(e.company)}${e.location?' · '+esc(e.location):''}</div>
+        ${bullets?`<ul class="cv-bullets">${bullets}</ul>`:''}</div>`;
+    });
+  }
+
+  // Education
+  const edus=getEduData().filter(e=>e.degree||e.inst);
+  let eduHTML='';
+  if(edus.length){
+    eduHTML='<div class="cv-sec-title">Education</div><hr class="cv-line">';
+    edus.forEach(e=>{
+      eduHTML+=`<div class="cv-job">
+        <div class="cv-row"><span class="cv-job-title">${esc(e.degree)}</span><span class="cv-date">${esc(e.year)}</span></div>
+        <div class="cv-sub">${esc(e.inst)}${e.loc?' · '+esc(e.loc):''}</div>
+        ${e.honors?`<div style="font-size:8.5px;color:#555;font-style:italic">${esc(e.honors)}</div>`:''}</div>`;
+    });
+  }
+
+  // Skills
+  const hTags=hard?hard.split(',').map(s=>s.trim()).filter(Boolean):[];
+  const sTags=soft?soft.split(',').map(s=>s.trim()).filter(Boolean):[];
+  let skillHTML='';
+  if(hTags.length||sTags.length){
+    skillHTML='<div class="cv-sec-title">Skills</div><hr class="cv-line">';
+    if(hTags.length)skillHTML+=`<div style="margin-bottom:5px"><span class="cv-skill-label">Technical Skills</span><div class="cv-skills-wrap">${hTags.map(t=>`<span class="cv-stag">${esc(t)}</span>`).join('')}</div></div>`;
+    if(sTags.length)skillHTML+=`<div><span class="cv-skill-label">Soft Skills</span><div class="cv-skills-wrap">${sTags.map(t=>`<span class="cv-stag">${esc(t)}</span>`).join('')}</div></div>`;
+  }
+
+  // Languages
+  const langs=getLangData().filter(l=>l.lang);
+  let langHTML='';
+  if(langs.length){
+    langHTML='<div class="cv-sec-title">Languages</div><hr class="cv-line">';
+    langs.forEach(l=>{langHTML+=`<div class="cv-lang-row"><span>${esc(l.lang)}</span><span class="cv-lang-lv">${esc(l.level)}</span></div>`;});
+  }
+
+  // Certifications
+  const certs=getCertData().filter(c=>c.name);
+  let certHTML='';
+  if(certs.length){
+    certHTML='<div class="cv-sec-title">Certifications &amp; Courses</div><hr class="cv-line">';
+    certs.forEach(c=>{certHTML+=`<div class="cv-cert-item"><div class="cv-row"><span class="cv-cert-name">${esc(c.name)}</span><span class="cv-date">${esc(c.year)}</span></div>${c.inst?`<div class="cv-cert-sub">${esc(c.inst)}</div>`:''}</div>`;});
+  }
+
+  // Awards
+  const awards=getAwardData().filter(a=>a.name);
+  let awardHTML='';
+  if(awards.length){
+    awardHTML='<div class="cv-sec-title">Awards &amp; Recognition</div><hr class="cv-line">';
+    awards.forEach(a=>{awardHTML+=`<div class="cv-cert-item"><div class="cv-row"><span class="cv-cert-name">${esc(a.name)}</span><span class="cv-date">${esc(a.year)}</span></div>${a.inst?`<div class="cv-cert-sub">${esc(a.inst)}</div>`:''}</div>`;});
+  }
+
+  // Hobbies
+  const hobHTML=hobbies?`<div class="cv-sec-title">Interests</div><hr class="cv-line"><div style="font-size:9.5px;color:#333">${esc(hobbies)}</div>`:'';
+
+  return `
+    <div class="cv-name">${esc(name)||'Tu Nombre Completo'}</div>
+    <div class="cv-contact-line">${contactHTML}</div>
+    ${sumHTML}${expHTML}${eduHTML}${skillHTML}${langHTML}${certHTML}${awardHTML}${hobHTML}`;
+}
+
+// ============ UPDATE ============
+function up(){
+  const mini=g('cv-preview-mini');
+  if(mini) mini.innerHTML=buildCV();
+}
+
+// ============ MODAL ============
+function openModal(){
+  const full=g('cv-preview-full');
+  if(full) full.innerHTML=buildCV();
+  g('modal').classList.add('open');
+}
+function closeModal(){
+  g('modal').classList.remove('open');
+}
+g('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+// ============ PDF DOWNLOAD (print window) ============
+function downloadPDF(){
+  const name=val('p_name')||'CV_WSW';
+  const cvBody=buildCV();
+
+  const printStyles=`
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+    *{box-sizing:border-box;margin:0;padding:0;}
+    @page{size:letter;margin:18mm 20mm 18mm 20mm;}
+    body{background:#fff;color:#111;font-family:'Lora',Georgia,serif;font-size:11px;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .cv-name{font-family:'Plus Jakarta Sans',sans-serif;font-size:26px;font-weight:800;letter-spacing:-.02em;color:#0a0a0a;margin-bottom:4px;line-height:1.1;}
+    .cv-contact-line{font-size:10px;color:#444;display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:12px;}
+    .cv-sep{color:#ccc;}
+    .cv-line{border:none;border-top:1.5px solid #111;margin:0 0 8px;}
+    .cv-sec-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:8.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#0a0a0a;margin:13px 0 5px;}
+    .cv-job{margin-bottom:10px;page-break-inside:avoid;}
+    .cv-row{display:flex;justify-content:space-between;align-items:baseline;}
+    .cv-job-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:11.5px;font-weight:700;color:#0a0a0a;}
+    .cv-date{font-size:9.5px;color:#555;white-space:nowrap;margin-left:8px;}
+    .cv-sub{font-size:10px;color:#333;font-style:italic;margin-bottom:3px;}
+    .cv-bullets{padding-left:14px;margin-top:3px;}
+    .cv-bullets li{font-size:10.5px;color:#222;margin-bottom:2px;}
+    .cv-summary{font-size:10.5px;color:#333;line-height:1.7;}
+    .cv-skills-wrap{display:flex;flex-wrap:wrap;gap:4px;margin-top:3px;}
+    .cv-stag{background:#f0f0f0;border-radius:2px;padding:2px 7px;font-size:9.5px;color:#333;}
+    .cv-lang-row{display:flex;justify-content:space-between;padding:2px 0;font-size:10.5px;border-bottom:1px solid #f0f0f0;}
+    .cv-lang-lv{color:#555;}
+    .cv-cert-item{margin-bottom:6px;page-break-inside:avoid;}
+    .cv-cert-name{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;color:#0a0a0a;font-size:10.5px;}
+    .cv-cert-sub{font-size:9.5px;color:#555;}
+    .cv-skill-label{font-family:'Plus Jakarta Sans',sans-serif;font-size:8px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:4px;}
+    .cv-empty{display:none;}
+  `;
+
+  const win=window.open('','_blank','width=900,height=700');
+  win.document.write(`<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CV — ${name}</title>
+<style>${printStyles}</style>
+</head>
+<body>
+<div id="cv-root">${cvBody}</div>
+<script>
+  // Wait for fonts then print
+  document.fonts.ready.then(function(){
+    setTimeout(function(){ window.focus(); window.print(); },400);
+  });
+<\/script>
+</body>
+</html>`);
+  win.document.close();
+}
+
+// ============ INIT ============
+(function init(){
+  addEntry('exp');
+  addEntry('edu');
+  addEntry('lang');
+  addEntry('cert');
+  addEntry('award');
+  up();
+})();
+</script>
+</body>
+</html>
